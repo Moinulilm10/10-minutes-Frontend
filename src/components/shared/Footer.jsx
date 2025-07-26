@@ -150,7 +150,7 @@ const Footer = () => {
     <div className="bg-white">
       {/* Desktop Layout */}
       <div className="hidden lg:block">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-[60px] py-12">
           {/* Top Section */}
           <div className="flex justify-between items-start mb-12">
             {/* Left - Logo and App Downloads */}
