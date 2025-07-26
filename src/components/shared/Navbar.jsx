@@ -3,12 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import responsiveMenuIcon from "../../assets/icon/responsive-menu-icon.svg";
 import translateIcon from "../../assets/icon/translate-button.svg";
 import logo from "../../assets/logo/10mslogo.svg";
+import { useLanguage } from "../../Context/LanguageContext";
 
 // Inline Button component
 const Button = ({ children, className = "", size = "default", ...props }) => {
   const sizeClasses = {
     default: "h-10 px-4 py-2",
-    sm: "h-9 rounded-md px-3",
+    sm: "h-8 rounded-md px-2",
     lg: "h-11 rounded-md px-8",
   };
 
@@ -22,7 +23,6 @@ const Button = ({ children, className = "", size = "default", ...props }) => {
   );
 };
 
-// Inline responsive menu icon SVG
 const ResponsiveMenuIcon = ({ className = "" }) => (
   <svg
     width="24"
@@ -42,13 +42,13 @@ const ResponsiveMenuIcon = ({ className = "" }) => (
   </svg>
 );
 
-const navItems = [
-  { title: "Class 6-12", href: "#", hasDropdown: true },
-  { title: "Skills", href: "#", hasDropdown: true },
-  { title: "Admission", href: "#", hasDropdown: true },
-  { title: "Online Batch", href: "#", hasDropdown: true },
-  { title: "English Centre", href: "#", hasDropdown: true },
-  { title: "More", href: "#", hasDropdown: true },
+const rawNavItems = [
+  "Class 6-12",
+  "Skills",
+  "Admission",
+  "Online Batch",
+  "English Centre",
+  "More",
 ];
 
 const dropdownContents = {
@@ -99,13 +99,20 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [sidebarDropdown, setSidebarDropdown] = useState(null);
   const dropdownRefs = useRef({});
+  const { t, toggleLanguage, language } = useLanguage();
+
+  const navItems = rawNavItems.map((title) => ({
+    title,
+    label: t(title.toLowerCase().replace(/\s+/g, "_")),
+    href: "#",
+    hasDropdown: title === "Admission" ? false : true,
+  }));
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      const target = event.target;
       if (
         openDropdown &&
-        !target.closest(`[data-dropdown="${openDropdown}"]`)
+        !event.target.closest(`[data-dropdown="${openDropdown}"]`)
       ) {
         setOpenDropdown(null);
       }
@@ -123,7 +130,6 @@ export default function Navbar() {
     setSidebarDropdown(sidebarDropdown === title ? null : title);
   };
 
-  // Updated renderDropdownContent to accept nav item title
   const renderDropdownContent = (title) => {
     const items = dropdownContents[title] || [];
     return (
@@ -137,7 +143,7 @@ export default function Navbar() {
               href="#"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors"
             >
-              {item}
+              {t(item)}
             </a>
           )
         )}
@@ -147,28 +153,25 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Desktop Navbar (1280px+) */}
+      {/* Desktop Navbar */}
       <nav className="hidden xl:flex items-center justify-evenly px-4 py-4 bg-white border-b border-gray-200">
         <div className="flex items-center space-x-4 pr-4">
-          {/* Logo */}
           <img src={logo} alt="logo" width={100} height={27} />
 
-          {/* Search Bar */}
           <div className="relative flex-1 max-w-md">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Search className="h-4 w-4 text-gray-400" />
             </div>
             <input
               type="text"
-              placeholder="কিসের কোর্স, কিংবা স্কুল প্রোগ্রাম সার্চ করুন..."
+              placeholder={t("search_placeholder")}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>
         </div>
 
-        {/* Navigation Links */}
         <div className="flex items-center gap-3">
-          {navItems.slice(0, 6).map((item) => (
+          {navItems.map((item) => (
             <div
               key={item.title}
               className="relative"
@@ -179,17 +182,12 @@ export default function Navbar() {
                 onMouseEnter={() =>
                   item.hasDropdown && setOpenDropdown(item.title)
                 }
-                className="flex items-center  text-gray-700 hover:text-green-600 transition-colors font-medium"
+                className="flex items-center text-gray-700 hover:text-green-600 transition-colors font-medium cursor-pointer"
               >
-                <span>{item.title}</span>
+                <span>{item.label}</span>
                 {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
               </button>
-              {/* {item.hasDropdown && openDropdown === item.title && (
-                <div className="absolute top-full left-0 mt-2 w-48 z-50">
-                  {renderDropdownContent()}
-                </div>
-              )} */}
-              {/*  Replace existing renderDropdownContent() call with renderDropdownContent(item.title) */}
+
               {item.hasDropdown && openDropdown === item.title && (
                 <div className="absolute top-full left-0 mt-2 w-60 z-50">
                   {renderDropdownContent(item.title)}
@@ -198,138 +196,148 @@ export default function Navbar() {
             </div>
           ))}
 
-          <div className="flex items-center space-x-3">
-            <div className="border-1 px-2 py-1 border-gray-400 rounded-sm flex gap-2 cursor-pointer">
-              <img
-                src={translateIcon}
-                alt="translate_icon"
-                className="h-6 w-6"
-              />
-              <span className="text-gray-700 text-base font-semibold">বাং</span>
-            </div>
-
-            <div className="flex items-center  text-green-600">
-              <Phone className="h-4 w-4" />
-              <span className="font-semibold">16910</span>
-            </div>
-            <Button className="px-6">লগ-ইন</Button>
+          <div
+            className="border-1 px-2 py-1 border-gray-400 rounded-sm flex gap-2 cursor-pointer"
+            onClick={toggleLanguage}
+          >
+            <img src={translateIcon} alt="translate_icon" className="h-6 w-6" />
+            <span className="text-gray-700 text-base font-semibold">
+              {t("bn")}
+            </span>
           </div>
+
+          <div className="flex items-center text-green-600">
+            <Phone className="h-4 w-4" />
+            <span className="font-semibold">{t("call")}</span>
+          </div>
+          <Button className="px-6">{t("login")}</Button>
         </div>
       </nav>
 
-      {/* Tablet Navbar (768px - 1279px) */}
+      {/* Tablet Navbar */}
       <nav className="hidden lg:flex xl:hidden items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
         <div className="flex items-center space-x-4">
           <button
             onClick={() => setIsSidebarOpen(true)}
             className="p-2 text-gray-700 hover:text-green-600"
           >
-            {/* <ResponsiveMenuIcon className="w-6 h-6" /> */}
             <img
               src={responsiveMenuIcon}
               alt="responsive_icon"
               className="w-6 h-6"
             />
           </button>
-
           <img src={logo} alt="logo" width={100} height={27} />
         </div>
 
-        {/* Search Bar */}
         <div className="relative flex-1 max-w-lg mx-4">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-4 w-4 text-gray-400" />
           </div>
           <input
             type="text"
-            placeholder="কিসের কোর্স, কিংবা স্কুল প্রোগ্রাম সার্চ করুন..."
+            placeholder={t("search_placeholder")}
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
         <div className="flex items-center space-x-3">
-          <div className="border-1 px-2 py-1 border-gray-400 rounded-sm flex gap-2 cursor-pointer">
+          <div
+            onClick={toggleLanguage}
+            className="border-1 px-2 py-1 border-gray-400 rounded-sm flex gap-2 cursor-pointer"
+          >
             <img src={translateIcon} alt="translate_icon" className="h-6 w-6" />
-            <span className="text-gray-700 text-base font-semibold">বাং</span>
+            <span className="text-gray-700 text-base font-semibold">
+              {t("bn")}
+            </span>
           </div>
           <div className="flex items-center space-x-2 text-green-600">
             <Phone className="h-4 w-4" />
-            <span className="font-semibold">16910</span>
+            <span className="font-semibold">{t("call")}</span>
           </div>
-          <Button className="px-4">লগ-ইন</Button>
+          <Button className="px-4">{t("login")}</Button>
         </div>
       </nav>
 
-      {/* Mobile Navbar (<768px) */}
-      <nav className="flex lg:hidden items-center justify-between  px-4 py-3 bg-white border-b border-gray-200">
-        <div className="flex gap-4 items-center">
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="p-2 text-gray-700 hover:text-green-600"
-          >
-            {/* <ResponsiveMenuIcon className="w-6 h-6" /> */}
-            <img
-              src={responsiveMenuIcon}
-              alt="responsive_icon"
-              className="w-6 h-6"
-            />
-          </button>
-
-          <img
-            src={logo}
-            alt="logo"
-            width={100}
-            height={27}
-            className="flex items-start"
-          />
-        </div>
-
-        <div className="flex items-center gap-3 mt-[60px]">
-          {navItems
-            .filter((item) =>
-              ["Class 6-12", "Skills", "Admission", "More"].includes(item.title)
-            )
-            .map((item) => (
-              <div
-                key={item.title}
-                className="relative"
-                data-dropdown={item.title}
+      {/* Mobile Navbar */}
+      <nav className="flex lg:hidden items-center justify-between px-1 py-3 bg-white border-b border-gray-200">
+        <div className="flex flex-col gap-10">
+          <div className="flex items-center justify-around gap-[120px]">
+            <div className="flex gap-4 items-center">
+              <button
+                onClick={() => setIsSidebarOpen(true)}
+                className="p-2 text-gray-700 hover:text-green-600"
               >
-                <button
-                  onClick={() => item.hasDropdown && toggleDropdown(item.title)}
-                  onMouseEnter={() =>
-                    item.hasDropdown && setOpenDropdown(item.title)
-                  }
-                  className="flex items-center text-gray-700 hover:text-green-600 transition-colors font-medium"
-                >
-                  <span className="text-[11px]">{item.title}</span>
-                  {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
-                </button>
+                <img
+                  src={responsiveMenuIcon}
+                  alt="responsive_icon"
+                  className="w-6 h-6"
+                />
+              </button>
+              <img
+                src={logo}
+                alt="logo"
+                width={100}
+                height="auto"
+                className="flex items-start"
+              />
+            </div>
 
-                {/* {item.hasDropdown && openDropdown === item.title && (
-                  <div className="absolute top-full left-0 mt-2 w-48 z-50">
-                    {renderDropdownContent()}
-                  </div>
-                )} */}
-                {item.hasDropdown && openDropdown === item.title && (
-                  <div className="absolute top-full left-0 mt-2 w-48 z-50">
-                    {renderDropdownContent(item.title)}
-                  </div>
-                )}
+            <div className="flex items-center space-x-2">
+              <div
+                onClick={toggleLanguage}
+                className="border-1 px-4 py-1 border-gray-400 rounded-sm flex justify-center items-center gap-1 cursor-pointer"
+              >
+                <img
+                  src={translateIcon}
+                  alt="translate_icon"
+                  className="h-4 w-4"
+                />
+                <span className="text-gray-700 text-[10px] font-semibold">
+                  {t("bn")}
+                </span>
               </div>
-            ))}
-        </div>
+              <div className="flex items-center space-x-1 text-green-600 text-sm">
+                <Phone className="h-3 w-3" />
+                <span className="font-semibold text-sm">{t("call")}</span>
+              </div>
+              <Button size="sm">{t("login")}</Button>
+            </div>
+          </div>
 
-        <div className="flex items-center space-x-2">
-          <div className="border-1 px-2 py-1 border-gray-400 rounded-sm flex gap-2 cursor-pointer">
-            <img src={translateIcon} alt="translate_icon" className="h-6 w-6" />
-            <span className="text-gray-700 text-base font-semibold">বাং</span>
+          <div className="flex items-center justify-around gap-3 ">
+            {navItems
+              .filter((item) =>
+                ["Class 6-12", "Skills", "Admission", "More"].includes(
+                  item.title
+                )
+              )
+              .map((item) => (
+                <div
+                  key={item.title}
+                  className="relative"
+                  data-dropdown={item.title}
+                >
+                  <button
+                    onClick={() =>
+                      item.hasDropdown && toggleDropdown(item.title)
+                    }
+                    onMouseEnter={() =>
+                      item.hasDropdown && setOpenDropdown(item.title)
+                    }
+                    className="flex items-center text-gray-700 hover:text-green-600 transition-colors font-medium"
+                  >
+                    <span className="text-[11px]">{item.label}</span>
+                    {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
+                  </button>
+                  {item.hasDropdown && openDropdown === item.title && (
+                    <div className="absolute top-full left-0 mt-2 w-48 z-50">
+                      {renderDropdownContent(item.title)}
+                    </div>
+                  )}
+                </div>
+              ))}
           </div>
-          <div className="flex items-center space-x-1 text-green-600 text-sm">
-            <Phone className="h-4 w-4" />
-            <span className="font-semibold">16910</span>
-          </div>
-          <Button size="sm">লগ-ইন</Button>
         </div>
       </nav>
 
@@ -366,7 +374,7 @@ export default function Navbar() {
                   item.hasDropdown && toggleSidebarDropdown(item.title)
                 }
               >
-                <span className="font-medium">{item.title}</span>
+                <span className="font-medium">{item.label}</span>
                 {item.hasDropdown && (
                   <ChevronDown
                     className={`h-4 w-4 transition-transform ${
@@ -391,7 +399,7 @@ export default function Navbar() {
                           href="#"
                           className="block p-2 text-sm text-gray-600 hover:text-green-600 hover:bg-gray-100 rounded"
                         >
-                          {dropdownItem}
+                          {t(dropdownItem)}
                         </a>
                       )
                   )}
