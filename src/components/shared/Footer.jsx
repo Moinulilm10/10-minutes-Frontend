@@ -5,7 +5,7 @@ const AppStoreButton = ({ store, className = "" }) => {
   const isGoogle = store === "google";
   return (
     <button
-      className={`bg-black text-white rounded-lg px-4 py-3 flex items-center space-x-3 hover:bg-gray-800 transition-colors ${className}`}
+      className={`bg-black text-white rounded-lg px-3 py-3 flex items-center space-x-3 hover:bg-gray-800 transition-colors ${className}`}
     >
       <div className="w-8 h-8 flex items-center justify-center">
         {isGoogle ? (
@@ -150,7 +150,7 @@ const Footer = () => {
     <div className="bg-white">
       {/* Desktop Layout */}
       <div className="hidden lg:block">
-        <div className="max-w-7xl mx-auto px-[60px] py-12">
+        <div className="max-w-7xl mx-auto px-[15px] py-12">
           {/* Top Section */}
           <div className="flex justify-between items-start mb-12">
             {/* Left - Logo and App Downloads */}
@@ -169,7 +169,7 @@ const Footer = () => {
             </div>
 
             {/* Middle - Navigation */}
-            <div className="flex-1 grid grid-cols-2 gap-16 mx-16">
+            <div className="flex-1 grid grid-cols-2 gap-10 mx-4">
               {/* Company Column */}
               <div>
                 <h3 className="text-lg font-semibold mb-6">Company</h3>
