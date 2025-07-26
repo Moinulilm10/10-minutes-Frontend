@@ -51,16 +51,48 @@ const navItems = [
   { title: "More", href: "#", hasDropdown: true },
 ];
 
-const sampleDropdownItems = [
-  "সকল ক্লাস",
-  "ক্লাস ৬",
-  "ক্লাস ৭",
-  "ক্লাস ৮",
-  "ক্লাস ৯",
-  "ক্লাস ১০",
-  "SSC",
-  "HSC",
-];
+const dropdownContents = {
+  "Class 6-12": [
+    "HSC",
+    "Class Ten",
+    "Class Nine",
+    "Class Eight",
+    "Class Seven",
+    "Class Six",
+  ],
+  Skills: [
+    "All courses",
+    "Language Learning",
+    "Freelancing",
+    "Bundle",
+    "Skills & IT",
+    "Design & Creative",
+    "Career Readiness",
+    "Kids (Age 7-14)",
+    "Professional",
+    "Free",
+  ],
+  "Online Batch": ["Online Batch (Class 6-10)", "HSC"],
+  "English Centre": [
+    "All Programmes",
+    "IELTS Programme",
+    "Spoken English (Junior)",
+    "English Foundation Programme",
+    "Kids' English",
+  ],
+  More: [
+    "Job Preparation Courses",
+    "Blog",
+    "Book Store",
+    "Free Notes & Guides",
+    "Academic Digital Content",
+    "Verify Certificate",
+    "divider",
+    "Career / Recruitment",
+    "Join as a Teacher",
+    "Join as an Affiliate",
+  ],
+};
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -91,19 +123,27 @@ export default function Navbar() {
     setSidebarDropdown(sidebarDropdown === title ? null : title);
   };
 
-  const renderDropdownContent = () => (
-    <div className="py-2 bg-white shadow-lg rounded-md border border-gray-200">
-      {sampleDropdownItems.map((item, index) => (
-        <a
-          key={index}
-          href="#"
-          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors"
-        >
-          {item}
-        </a>
-      ))}
-    </div>
-  );
+  // Updated renderDropdownContent to accept nav item title
+  const renderDropdownContent = (title) => {
+    const items = dropdownContents[title] || [];
+    return (
+      <div className="py-2 bg-white shadow-lg rounded-md border border-gray-200">
+        {items.map((item, index) =>
+          item === "divider" ? (
+            <hr key={index} className="my-1 border-t border-gray-300" />
+          ) : (
+            <a
+              key={index}
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            >
+              {item}
+            </a>
+          )
+        )}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -144,10 +184,15 @@ export default function Navbar() {
                 <span>{item.title}</span>
                 {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
               </button>
-
-              {item.hasDropdown && openDropdown === item.title && (
+              {/* {item.hasDropdown && openDropdown === item.title && (
                 <div className="absolute top-full left-0 mt-2 w-48 z-50">
                   {renderDropdownContent()}
+                </div>
+              )} */}
+              {/*  Replace existing renderDropdownContent() call with renderDropdownContent(item.title) */}
+              {item.hasDropdown && openDropdown === item.title && (
+                <div className="absolute top-full left-0 mt-2 w-60 z-50">
+                  {renderDropdownContent(item.title)}
                 </div>
               )}
             </div>
@@ -261,9 +306,14 @@ export default function Navbar() {
                   {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
                 </button>
 
-                {item.hasDropdown && openDropdown === item.title && (
+                {/* {item.hasDropdown && openDropdown === item.title && (
                   <div className="absolute top-full left-0 mt-2 w-48 z-50">
                     {renderDropdownContent()}
+                  </div>
+                )} */}
+                {item.hasDropdown && openDropdown === item.title && (
+                  <div className="absolute top-full left-0 mt-2 w-48 z-50">
+                    {renderDropdownContent(item.title)}
                   </div>
                 )}
               </div>
@@ -328,15 +378,23 @@ export default function Navbar() {
 
               {item.hasDropdown && sidebarDropdown === item.title && (
                 <div className="ml-4 mt-2 space-y-1">
-                  {sampleDropdownItems.map((dropdownItem, index) => (
-                    <a
-                      key={index}
-                      href="#"
-                      className="block p-2 text-sm text-gray-600 hover:text-green-600 hover:bg-gray-100 rounded"
-                    >
-                      {dropdownItem}
-                    </a>
-                  ))}
+                  {(dropdownContents[item.title] || []).map(
+                    (dropdownItem, index) =>
+                      dropdownItem === "divider" ? (
+                        <hr
+                          key={index}
+                          className="border-t border-gray-300 my-1"
+                        />
+                      ) : (
+                        <a
+                          key={index}
+                          href="#"
+                          className="block p-2 text-sm text-gray-600 hover:text-green-600 hover:bg-gray-100 rounded"
+                        >
+                          {dropdownItem}
+                        </a>
+                      )
+                  )}
                 </div>
               )}
             </div>
