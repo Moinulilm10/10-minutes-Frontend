@@ -7,7 +7,10 @@ const VideoSection = ({ media }) => {
   const { t } = useLanguage();
 
   const videoMedia = media?.filter(
-    (item) => item.resource_type === "video" && item.resource_value
+    (item) =>
+      item.resource_type === "video" &&
+      typeof item.resource_value === "string" &&
+      item.resource_value.trim().length > 0
   );
 
   const [activeVideo, setActiveVideo] = useState(0);
