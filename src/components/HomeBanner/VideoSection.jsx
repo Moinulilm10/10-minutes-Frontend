@@ -1,104 +1,89 @@
-import {
-  BookOpen,
-  Calendar,
-  ChevronLeft,
-  ChevronRight,
-  ClipboardList,
-  Clock,
-  Facebook,
-  NotebookText,
-  Phone,
-  Play,
-  Users,
-  Video,
-  Youtube,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../../context/LanguageContext";
+import CourseFeatures from "../CourseFeatures";
 
-const VideoSection = () => {
-  const [activeVideo, setActiveVideo] = useState(0);
-
+const VideoSection = ({ media }) => {
   const { t } = useLanguage();
 
-  const videos = [
-    { id: 1, title: "Course Introduction", thumbnail: "bg-green-400" },
-    { id: 2, title: "Speaking Module", thumbnail: "bg-blue-400" },
-    { id: 3, title: "Writing Module", thumbnail: "bg-purple-400" },
-    { id: 4, title: "Reading Module", thumbnail: "bg-orange-400" },
-    { id: 5, title: "Listening Module", thumbnail: "bg-red-400" },
-    { id: 6, title: "Practice Tests", thumbnail: "bg-indigo-400" },
-  ];
+  const videoMedia = media?.filter(
+    (item) => item.resource_type === "video" && item.resource_value
+  );
 
-  const nextVideo = () => {
-    setActiveVideo((prev) => (prev + 1) % videos.length);
+  const [activeVideo, setActiveVideo] = useState(0);
+
+  const handleNext = () => {
+    setActiveVideo((prev) => (prev + 1) % videoMedia.length);
   };
 
-  const prevVideo = () => {
-    setActiveVideo((prev) => (prev - 1 + videos.length) % videos.length);
+  const handlePrev = () => {
+    setActiveVideo(
+      (prev) => (prev - 1 + videoMedia.length) % videoMedia.length
+    );
   };
+
+  const getYouTubeEmbedUrl = (videoId) =>
+    `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow-2xl overflow-hidden w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl">
+      <div className="bg-white rounded-lg shadow-2xl overflow-hidden w-full max-w-xl">
         {/* Video Player */}
-        <div className="relative">
-          <div className="aspect-video bg-gray-200 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+        <div className="relative aspect-video bg-gray-200">
+          {videoMedia.length > 0 ? (
+            <iframe
+              className="w-full h-full cursor-pointer"
+              src={getYouTubeEmbedUrl(videoMedia[activeVideo].resource_value)}
+              title={`YouTube video ${activeVideo}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-500">
+              {t("video_course.no_videos")}
+            </div>
+          )}
+
+          {/* Arrows */}
+          {videoMedia.length > 1 && (
+            <>
+              <button
+                onClick={handlePrev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1 cursor-pointer"
+              >
+                <ChevronLeft className="w-4 h-4 text-gray-800" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1 cursor-pointer"
+              >
+                <ChevronRight className="w-4 h-4 text-gray-800" />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Thumbnails */}
+        <div className="p-3 bg-gray-50 overflow-x-auto flex space-x-2 scrollbar-hide">
+          {videoMedia.map((video, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveVideo(index)}
+              className={`w-20 h-12 rounded overflow-hidden cursor-pointer ${
+                index === activeVideo ? "ring-2 ring-green-500" : ""
+              }`}
+            >
               <img
-                src="https://via.placeholder.com/600x400/e5e7eb/374151?text=IELTS+Course+by+MUNZEREEN+SHAHID"
-                alt="IELTS Course"
-                className="w-full h-full object-cover"
+                src={
+                  video.thumbnail_url ||
+                  `https://img.youtube.com/vi/${video.resource_value}/mqdefault.jpg`
+                }
+                alt="Thumbnail"
+                className="w-full h-full object-cover cursor-pointer"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                <button className="w-16 h-16 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg">
-                  <Play className="w-6 h-6 text-gray-800 ml-1" />
-                </button>
-              </div>
-            </div>
-
-            {/* Badge */}
-            <div className="absolute top-3 left-3 bg-slate-800 text-white px-2 py-1 rounded text-xs font-medium">
-              {t("video_course.best_seller")}
-            </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevVideo}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full flex items-center justify-center transition-all duration-200 shadow-md"
-            >
-              <ChevronLeft className="w-4 h-4 text-gray-700" />
             </button>
-            <button
-              onClick={nextVideo}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full flex items-center justify-center transition-all duration-200 shadow-md"
-            >
-              <ChevronRight className="w-4 h-4 text-gray-700" />
-            </button>
-          </div>
-
-          {/* Video Thumbnails */}
-          <div className="p-3 bg-gray-50">
-            <div className="flex space-x-2 overflow-x-auto scrollbar-hide">
-              {videos.map((video, index) => (
-                <button
-                  key={video.id}
-                  onClick={() => setActiveVideo(index)}
-                  className={`flex-shrink-0 w-16 h-12 rounded overflow-hidden transition-all duration-200 ${
-                    activeVideo === index
-                      ? "ring-2 ring-green-500 ring-opacity-75"
-                      : "hover:ring-2 hover:ring-gray-300"
-                  }`}
-                >
-                  <div
-                    className={`w-full h-full ${video.thumbnail} bg-opacity-60 flex items-center justify-center`}
-                  >
-                    <Play className="w-3 h-3 text-white" />
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Course Info */}
@@ -126,71 +111,16 @@ const VideoSection = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-3">
               {t("video_course.includes")}
             </h3>
-
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center space-x-3">
-                <Users className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.students")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.duration")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Video className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.total_videos")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <ClipboardList className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.mock_tests")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <NotebookText className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.lecture_sheets")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Youtube className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.youtube_lectures")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <BookOpen className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.free_book")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Facebook className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.support_group")}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Calendar className="w-4 h-4 text-gray-600 flex-shrink-0" />
-                <span className="text-gray-700">
-                  {t("video_course.lifetime_access")}
-                </span>
-              </div>
-            </div>
+            <CourseFeatures />
           </div>
         </div>
       </div>
 
+      {/* Bottom Info Section */}
       <div className="flex justify-between mt-5">
         <p className="text-sm text-gray-400">{t("ask_course_details")}</p>
         <div className="flex gap-2 items-center">
-          <Phone className="w-4 h-4 text-green-400 fill-current" />
+          <Phone className="w-4 h-4 text-green-400" />
           <p className="text-sm text-green-400 underline">{t("phone_call")}</p>
         </div>
       </div>

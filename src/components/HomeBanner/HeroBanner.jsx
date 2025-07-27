@@ -63,7 +63,7 @@ const HomeBanner = () => {
         </div>
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
           <div className="relative lg:absolute lg:top-30 lg:right-8 xl:right-16 2xl:right-24">
-            <VideoSection />
+            <VideoSection media={data.media} />
           </div>
         </div>
       </div>
