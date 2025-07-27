@@ -8,7 +8,7 @@
   "more": "আরও",
   "login": "লগ-ইন",
   "call": "১৬৯১০",
-  "bn": "বাং",
+
   "Class 6-12": "ষষ্ঠ - দ্বাদশ শ্রেণি",
   "HSC": "এইচএসসি",
   "Class Ten": "দশম শ্রেণি",
@@ -44,5 +44,7 @@
   "Verify Certificate": "সার্টিফিকেট যাচাই",
   "Career / Recruitment": "চাকরি / নিয়োগ",
   "Join as a Teacher": "শিক্ষক হিসেবে যোগ দিন",
-  "Join as an Affiliate": "অ্যাফিলিয়েট হিসেবে যোগ দিন"
+  "Join as an Affiliate": "অ্যাফিলিয়েট হিসেবে যোগ দিন",
+  "course_review_text": "৮১.৮% শিক্ষার্থী কোর্স শেষে ৫ রেটিং দিয়েছেন",
+  "bn": "EN"
 }
