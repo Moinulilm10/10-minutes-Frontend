@@ -5,45 +5,9 @@ const CourseFeatures = ({ courseSlug }) => {
   const { t } = useLanguage();
 
   const { data: feature, isLoading, error } = courseFeaturesDetails(courseSlug);
-  console.log("🚀 ~ CourseFeatures ~ feature:", feature);
 
   if (isLoading) return <div>Loading features...</div>;
   if (error) return <div>Failed to load features.</div>;
-
-  //   const features = [
-  //     {
-  //       id: 1,
-  //       icon: <Play className="w-6 h-6 md:w-7 md:h-7 text-white" />,
-  //       iconBg: "bg-green-500",
-  //       title: "৫০+ ভিডিও লেকচার",
-  //       description:
-  //         "IELTS Academic ও General Training এর Overview, Format ও প্রতেটি ধরন নিয়ে in-depth আলোচনা",
-  //     },
-  //     {
-  //       id: 2,
-  //       icon: <BookOpen className="w-6 h-6 md:w-7 md:h-7 text-white" />,
-  //       iconBg: "bg-blue-500",
-  //       title: "৩৮টি লেকচার শিট",
-  //       description:
-  //         "Reading, Writing, Listening ও Speaking এর প্রতিটি প্রশ্নের উত্তর করার স্ট্র্যাটেজি এবং 600+ Vocabulary",
-  //     },
-  //     {
-  //       id: 3,
-  //       icon: <FileText className="w-6 h-6 md:w-7 md:h-7 text-white" />,
-  //       iconBg: "bg-orange-500",
-  //       title: "রিডিং এন্ড লিসনিং মক টেস্ট",
-  //       description:
-  //         "10 Reading ও 10 Listening Mock Tests এর সাধ্যমে প্রস্তুতি যাচাই",
-  //     },
-  //     {
-  //       id: 4,
-  //       icon: <Headphones className="w-6 h-6 md:w-7 md:h-7 text-white" />,
-  //       iconBg: "bg-red-500",
-  //       title: "ডাউট সলভিং লাইভ ক্লাস",
-  //       description:
-  //         "সাপ্তাহিক ভুল ক্লাসে এক্সপার্ট টিচারের কাছে প্রবলেম সলভিং এর সুযোগ",
-  //     },
-  //   ];
 
   return (
     <div className="w-[450px] md:w-[850px] lg:w-[900px] py-6 md:py-8 lg:py-10 px-4">
