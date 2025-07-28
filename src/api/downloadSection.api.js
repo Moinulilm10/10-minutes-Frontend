@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axiosClient from "./axiosClient";
 
-export const pdfDownloadSection = ({ courseSlug }) => {
-  console.log("🚀 ~ pdfDownloadSection ~ courseSlug:", courseSlug);
+export const downloadSection = ({ courseSlug }) => {
   return useQuery({
     queryKey: ["pdf-downloads", courseSlug],
     queryFn: async () => {
