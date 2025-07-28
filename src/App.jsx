@@ -10,9 +10,9 @@ function App() {
     <>
       <Navbar />
       <ProductPage />
-      <div className="container px-10 lg:px-32 ">
+      <div className="container px-10 md:px-12 lg:px-32 ">
         <NavigationSlider />
-        <CourseInstructorProfile />
+        <CourseInstructorProfile courseSlug="ielts-course" />
       </div>
       <Footer />
     </>

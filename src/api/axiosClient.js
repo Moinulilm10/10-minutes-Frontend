@@ -1,4 +1,3 @@
-// src/axiosClient.js
 import axios from "axios";
 
 // Create an Axios instance
@@ -7,9 +6,8 @@ const axiosClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 10000, // 10 seconds timeout
+  timeout: 10000,
   params: {
-    // Default query parameters (if any, can remove if not needed)
     lang: "en",
   },
 });
