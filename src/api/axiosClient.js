@@ -4,6 +4,7 @@ import axios from "axios";
 const axiosClient = axios.create({
   baseURL: "https://api.10minuteschool.com/discovery-service/api/v1",
   headers: {
+    "X-TENMS-SOURCE-PLATFORM": "web",
     "Content-Type": "application/json",
   },
   timeout: 10000,

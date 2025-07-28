@@ -1,5 +1,5 @@
 import { Download } from "lucide-react";
-import { pdfDownloadSection } from "../../api/PDFDownloadSection.api";
+import { pdfDownloadSection } from "../../api/pdfDownloadSection.api";
 
 const PDFDownloadSection = ({ courseSlug }) => {
   console.log("🚀 ~ PDFDownloadSection ~ courseSlug:", courseSlug);
