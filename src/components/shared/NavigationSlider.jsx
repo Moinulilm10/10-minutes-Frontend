@@ -1,22 +1,25 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import Slider from "react-slick";
+import { useLanguage } from "../../context/LanguageContext";
 
 const NavigationSlider = () => {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeSlideIndex, setActiveSlideIndex] = useState(null); // Track clicked slide
+  const [activeSlideIndex, setActiveSlideIndex] = useState(null);
   const [slidesToShow, setSlidesToShow] = useState(4);
 
+  const { t } = useLanguage();
+
   const slides = [
-    "কোর্স ইন্ট্রোডাক্টর",
-    "কোর্সটি যেভাবে সাজানো হয়েছে",
-    "কোর্সটি করে যা শিখবেন",
-    "কোর্স সম্পর্কে বিস্তারিত",
-    "কোর্স এক্সক্লুসিভ ফিচার",
-    "এই কোর্সের সাথে ফ্রি পাচ্ছেন–",
-    "শিক্ষার্থীরা যা বলছে",
-    "সচরাচর জিজ্ঞাসা",
+    "course_intro",
+    "course_structure",
+    "course_learnings",
+    "course_details",
+    "exclusive_features",
+    "free_with_course",
+    "student_feedback",
+    "faq",
   ];
 
   const settings = {
@@ -67,10 +70,10 @@ const NavigationSlider = () => {
           {/* Slider */}
           <div className="w-full px-0 lg:px-6">
             <Slider ref={sliderRef} {...settings}>
-              {slides.map((slide, index) => (
+              {slides.map((key, index) => (
                 <div key={index} className="px-0 border-b border-gray-200">
                   <div
-                    className={`flex items-center justify-center min-h-[55px] px-4 text-center border-b-1  cursor-pointer transition-colors duration-200 ${
+                    className={`flex items-center justify-center min-h-[55px] px-4 text-center border-b-1 cursor-pointer transition-colors duration-200 ${
                       activeSlideIndex === index
                         ? "text-green-600 border-green-600"
                         : "text-gray-500 border-transparent"
@@ -78,7 +81,7 @@ const NavigationSlider = () => {
                     onClick={() => setActiveSlideIndex(index)}
                   >
                     <span className="text-base font-medium whitespace-nowrap">
-                      {slide}
+                      {t(key)}
                     </span>
                   </div>
                 </div>
