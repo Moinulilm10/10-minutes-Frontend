@@ -47,7 +47,7 @@ const NavigationSlider = () => {
   const isAtEnd = currentSlide >= maxSlides;
 
   return (
-    <div className="w-[900px] bg-white z-50 sticky top-0 border-b border-gray-300">
+    <div className="w-[900px] bg-white z-50 sticky top-0 ">
       <div className="hidden md:block">
         <div className="relative flex items-center">
           {/* Left Arrow */}
@@ -68,9 +68,9 @@ const NavigationSlider = () => {
           <div className="w-full px-0 lg:px-6">
             <Slider ref={sliderRef} {...settings}>
               {slides.map((slide, index) => (
-                <div key={index} className="px-0">
+                <div key={index} className="px-0 border-b border-gray-200">
                   <div
-                    className={`flex items-center justify-center min-h-[55px] px-4 text-center border-b-1 cursor-pointer transition-colors duration-200 ${
+                    className={`flex items-center justify-center min-h-[55px] px-4 text-center border-b-1  cursor-pointer transition-colors duration-200 ${
                       activeSlideIndex === index
                         ? "text-green-600 border-green-600"
                         : "text-gray-500 border-transparent"
