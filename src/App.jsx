@@ -1,4 +1,5 @@
 import "./App.css";
+import CourseExclusiveFeatures from "./components/section/CourseExclusiveFeatures";
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
 import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
@@ -19,6 +20,7 @@ function App() {
         <CourseFeatures courseSlug="ielts-course" />
         <PDFDownloadSection courseSlug="ielts-course" />
         <CourseLearningOutcomes courseSlug="ielts-course" />
+        <CourseExclusiveFeatures courseSlug="ielts-course" />
       </div>
       <Footer />
     </>
