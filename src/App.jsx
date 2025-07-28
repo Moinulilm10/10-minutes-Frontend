@@ -1,4 +1,5 @@
 import "./App.css";
+import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
@@ -13,6 +14,7 @@ function App() {
       <div className="container px-10 md:px-12 lg:px-32 space-y-12">
         <NavigationSlider />
         <CourseInstructorProfile courseSlug="ielts-course" />
+        <CourseFeatures courseSlug="ielts-course" />
       </div>
       <Footer />
     </>
