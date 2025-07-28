@@ -1,12 +1,12 @@
 import { Download } from "lucide-react";
-import { pdfDownloadSection } from "../../api/downloadSection.api";
+import { downloadSection } from "../../api/downloadSection.api";
 
 const PDFDownloadSection = ({ courseSlug }) => {
   const {
     data: pdfDataList,
     isLoading,
     error,
-  } = pdfDownloadSection({ courseSlug });
+  } = downloadSection({ courseSlug });
 
   if (isLoading) return <div>Loading...</div>;
   if (error || !pdfDataList?.length) return <div>No PDF data found.</div>;
