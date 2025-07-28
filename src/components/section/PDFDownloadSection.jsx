@@ -1,4 +1,3 @@
-import { Download } from "lucide-react";
 import { downloadSection } from "../../api/downloadSection.api";
 
 const PDFDownloadSection = ({ courseSlug }) => {
@@ -12,8 +11,6 @@ const PDFDownloadSection = ({ courseSlug }) => {
   if (error || !pdfDataList?.length) return <div>No PDF data found.</div>;
 
   const pdfData = pdfDataList[0];
-
-  console.log(typeof pdfData);
 
   return (
     <div
@@ -61,7 +58,6 @@ const PDFDownloadSection = ({ courseSlug }) => {
                 rel="noopener noreferrer"
                 className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-base md:text-xl py-4 md:py-3 px-4 md:px-5 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-3 w-fit"
               >
-                <Download className="w-5 h-5 md:w-6 md:h-6" />
                 {pdfData.cta?.text || "Download PDF"}
               </a>
             </div>
