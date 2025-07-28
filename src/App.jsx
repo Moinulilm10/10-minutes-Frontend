@@ -1,4 +1,5 @@
 import "./App.css";
+import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
 import NavigationSlider from "./components/shared/NavigationSlider";
@@ -9,8 +10,9 @@ function App() {
     <>
       <Navbar />
       <ProductPage />
-      <div className="container px-32">
+      <div className="container px-10 lg:px-32 ">
         <NavigationSlider />
+        <CourseInstructorProfile />
       </div>
       <Footer />
     </>
