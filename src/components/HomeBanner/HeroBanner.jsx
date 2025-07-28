@@ -12,7 +12,6 @@ const HomeBanner = () => {
     queryKey: ["ielts-course"],
     queryFn: fetchIELTSCourse,
   });
-  console.log("🚀 ~ HomeBanner ~ data:", data);
 
   if (isLoading)
     return <div className="text-center text-white py-10">Loading...</div>;
