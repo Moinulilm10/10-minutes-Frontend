@@ -1,6 +1,7 @@
 import "./App.css";
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
+import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
 import PDFDownloadSection from "./components/section/PDFDownloadSection";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
@@ -17,6 +18,7 @@ function App() {
         <CourseInstructorProfile courseSlug="ielts-course" />
         <CourseFeatures courseSlug="ielts-course" />
         <PDFDownloadSection courseSlug="ielts-course" />
+        <CourseLearningOutcomes courseSlug="ielts-course" />
       </div>
       <Footer />
     </>
