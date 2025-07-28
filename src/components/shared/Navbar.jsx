@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import responsiveMenuIcon from "../../assets/icon/responsive-menu-icon.svg";
 import translateIcon from "../../assets/icon/translate-button.svg";
 import logo from "../../assets/logo/10mslogo.svg";
-import { useLanguage } from "../../Context/LanguageContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 // Inline Button component
 const Button = ({ children, className = "", size = "default", ...props }) => {
