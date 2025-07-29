@@ -132,7 +132,7 @@ const CourseCarousel = () => {
         {/* Header with Navigation */}
         <div className="flex justify-between items-center mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-bold text-gray-900">
-            আপনার জন্য আরও কিছু কোর্স
+            {t("course_for_you")}
           </h2>
 
           {/* Navigation Arrows */}

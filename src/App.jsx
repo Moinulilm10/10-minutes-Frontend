@@ -6,6 +6,7 @@ import CourseInstructorProfile from "./components/section/CourseInstructorProfil
 import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
 import MoreCarousel from "./components/section/MoreCarousel";
 import PDFDownloadSection from "./components/section/PDFDownloadSection";
+import TestimonialSlider from "./components/section/TestimonialSlider";
 import WhatWeGotFromCourse from "./components/section/WhatWeGotFromCourse";
 import WhatYouNeedForAttendClass from "./components/section/WhatYouNeedForAttendClass";
 import Footer from "./components/shared/Footer";
@@ -28,6 +29,7 @@ function App() {
         <WhatWeGotFromCourse />
         <WhatYouNeedForAttendClass />
         <ContactSection />
+        <TestimonialSlider courseSlug="ielts-course" />
       </div>
       <div className="px-10 md:px-12 lg:px-32 space-y-8 mt-16">
         <MoreCarousel />
