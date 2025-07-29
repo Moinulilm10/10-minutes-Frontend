@@ -30,7 +30,7 @@ const VideoSection = ({ media }) => {
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow-2xl overflow-hidden w-full max-w-xl">
+      <div className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-xl">
         {/* Video Player */}
         <div className="relative aspect-video bg-gray-200">
           {videoMedia.length > 0 ? (
