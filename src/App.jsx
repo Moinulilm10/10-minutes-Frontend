@@ -5,6 +5,7 @@ import CourseInstructorProfile from "./components/section/CourseInstructorProfil
 import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
 import PDFDownloadSection from "./components/section/PDFDownloadSection";
 import WhatWeGotFromCourse from "./components/section/WhatWeGotFromCourse";
+import WhatYouNeedForAttendClass from "./components/section/WhatYouNeedForAttendClass";
 import Footer from "./components/shared/Footer";
 import Navbar from "./components/shared/Navbar";
 import NavigationSlider from "./components/shared/NavigationSlider";
@@ -23,6 +24,7 @@ function App() {
         <CourseLearningOutcomes courseSlug="ielts-course" />
         <CourseExclusiveFeatures courseSlug="ielts-course" />
         <WhatWeGotFromCourse />
+        <WhatYouNeedForAttendClass />
       </div>
       <Footer />
     </>
