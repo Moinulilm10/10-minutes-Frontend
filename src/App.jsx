@@ -1,4 +1,5 @@
 import "./App.css";
+import ContactSection from "./components/section/ContactSection";
 import CourseExclusiveFeatures from "./components/section/CourseExclusiveFeatures";
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
@@ -16,7 +17,7 @@ function App() {
     <>
       <Navbar />
       <ProductPage />
-      <div className="container px-10 md:px-12 lg:px-32 space-y-12">
+      <div className="container px-10 md:px-12 lg:px-32 space-y-8">
         <NavigationSlider />
         <CourseInstructorProfile courseSlug="ielts-course" />
         <CourseFeatures courseSlug="ielts-course" />
@@ -25,6 +26,7 @@ function App() {
         <CourseExclusiveFeatures courseSlug="ielts-course" />
         <WhatWeGotFromCourse />
         <WhatYouNeedForAttendClass />
+        <ContactSection />
       </div>
       <Footer />
     </>
