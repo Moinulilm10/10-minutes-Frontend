@@ -4,6 +4,7 @@ import CourseExclusiveFeatures from "./components/section/CourseExclusiveFeature
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
 import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
+import MoreCarousel from "./components/section/MoreCarousel";
 import PDFDownloadSection from "./components/section/PDFDownloadSection";
 import WhatWeGotFromCourse from "./components/section/WhatWeGotFromCourse";
 import WhatYouNeedForAttendClass from "./components/section/WhatYouNeedForAttendClass";
@@ -27,6 +28,9 @@ function App() {
         <WhatWeGotFromCourse />
         <WhatYouNeedForAttendClass />
         <ContactSection />
+      </div>
+      <div className="px-10 md:px-12 lg:px-32 space-y-8 mt-16">
+        <MoreCarousel />
       </div>
       <Footer />
     </>
