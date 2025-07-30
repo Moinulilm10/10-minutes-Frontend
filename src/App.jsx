@@ -29,9 +29,9 @@ function App() {
         <CourseExclusiveFeatures courseSlug="ielts-course" />
         <WhatWeGotFromCourse />
         <WhatYouNeedForAttendClass />
-        <ContactSection />
-        <TestimonialSlider courseSlug="ielts-course" />
         <PaymentInfo />
+        <TestimonialSlider courseSlug="ielts-course" />
+        <ContactSection />
       </div>
       <div className="px-10 md:px-12 lg:px-32 space-y-8 mt-16">
         <MoreCarousel />
