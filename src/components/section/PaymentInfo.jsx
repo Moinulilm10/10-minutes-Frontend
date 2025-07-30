@@ -7,7 +7,7 @@ const PaymentInfo = () => {
 
   const handleVideoLinkClick = () => {
     setIsVideoOpen(true);
-    setShowVideo(false); // Start with thumbnail
+    setShowVideo(false);
   };
 
   const handlePlayClick = () => {
