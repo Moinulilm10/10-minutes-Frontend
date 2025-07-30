@@ -43,59 +43,35 @@ const PaymentInfo = () => {
 
       {/* Video Modal */}
       {isVideoOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-[rgba(28,28,28,0.7)] bg-opacity-80 flex items-center justify-center z-50 p-4">
           <div className="relative max-w-5xl w-full">
             {/* Close Button */}
             <button
               onClick={handleCloseModal}
               className="absolute -top-12 right-0 z-10 text-white hover:text-gray-300 transition-colors duration-200"
             >
-              <X className="w-8 h-8" />
+              <X className="w-8 h-8 cursor-pointer" />
             </button>
 
             {/* Video Container */}
-            <div className="aspect-video w-full bg-gray-400 rounded-lg overflow-hidden">
+            <div className="aspect-video w-full  rounded-lg overflow-hidden">
               {!showVideo ? (
-                // Grey background with centered text and play button
-                // <div
-                //   className="relative w-full h-full cursor-pointer flex flex-col items-center justify-center bg-gray-400"
-                //   onClick={handlePlayClick}
-                // >
-                  {/* Bengali Text */}
-                  {/* <div className="text-center mb-8 px-4">
-                    <p className="text-black text-2xl md:text-3xl lg:text-4xl font-medium leading-tight">
-                      কীভাবে অনলাইনে পেমেন্ট করে
-                    </p>
-                    <p className="text-black text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mt-2">
-                      টেন মিনিট স্কুল এর যেকোনো কোর্স ভর্তি হবেন।
-                    </p>
-                  </div> */}
-
-                  {/* Play Button */}
-                  {/* <div className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 transition-all duration-200 shadow-lg">
-                    <div className="w-0 h-0 border-l-[20px] border-l-red-500 border-t-[14px] border-t-transparent border-b-[14px] border-b-transparent ml-1"></div>
-                  </div> */}
-                //   <img
-                //     src="https://10minuteschool.com/images/annual_exam/play_icon_2.svg"
-                //     alt="Play Icon"
-                //     className="w-24 h-24 object-cover"
-                //   />
-                          // </div>
-                <div className="relative w-full h-full cursor-pointer" onClick={handlePlayClick}>
+                <div
+                  className="relative w-full h-full cursor-pointer"
+                  onClick={handlePlayClick}
+                >
                   <img
                     src="https://cdn.10minuteschool.com/images/how_to_payment_1707373301013.png"
                     alt="Payment Tutorial Thumbnail"
                     className="w-full h-full object-cover"
                   />
                   {/* Grey overlay */}
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center hover:bg-opacity-30 transition-all duration-200">
-                    <div className="bg-white bg-opacity-20 rounded-full p-4 hover:bg-opacity-30 transition-all duration-200">
-                      <img
-                        src="https://10minuteschool.com/images/annual_exam/play_icon_2.svg"
-                        alt="Play Icon"
-                        className="w-16 h-16 md:w-20 md:h-20"
-                      />
-                    </div>
+                  <div className="absolute inset-0 bg-[rgba(0,0,0,0.7)]  bg-opacity-40 flex items-center justify-center hover:bg-opacity-30 transition-all duration-200">
+                    <img
+                      src="https://10minuteschool.com/images/annual_exam/play_icon_2.svg"
+                      alt="Play Icon"
+                      className="w-16 h-16 md:w-28 md:h-28"
+                    />
                   </div>
                 </div>
               ) : (
