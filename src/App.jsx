@@ -4,11 +4,8 @@ import CourseExclusiveFeatures from "./components/section/CourseExclusiveFeature
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
 import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
-
 import MoreCarousel from "./components/section/MoreCarousel";
-
 import PaymentInfo from "./components/section/PaymentInfo";
-
 import PDFDownloadSection from "./components/section/PDFDownloadSection";
 import TestimonialSlider from "./components/section/TestimonialSlider";
 import WhatWeGotFromCourse from "./components/section/WhatWeGotFromCourse";
@@ -32,14 +29,12 @@ function App() {
         <CourseExclusiveFeatures courseSlug="ielts-course" />
         <WhatWeGotFromCourse />
         <WhatYouNeedForAttendClass />
-
         <ContactSection />
         <TestimonialSlider courseSlug="ielts-course" />
+        <PaymentInfo />
       </div>
       <div className="px-10 md:px-12 lg:px-32 space-y-8 mt-16">
         <MoreCarousel />
-
-        <PaymentInfo />
       </div>
       <Footer />
     </>
