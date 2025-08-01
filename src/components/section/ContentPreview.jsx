@@ -285,10 +285,10 @@ const ContentPreview = () => {
         ))}
       </div>
       {/* Show All Content Button */}
-      <div className="flex justify-center mt-6">
+      <div className="flex justify-center mt-6 relative bottom-[50px]">
         <button
           onClick={toggleAllContent}
-          className="flex items-center space-x-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-200 focus:outline-none "
+          className="flex items-center space-x-2 px-6 py-2 bg-gray-100 hover:bg-gray-200 rounded-4xl transition-all duration-200 focus:outline-none "
         >
           <span className="text-gray-700 font-medium">
             {showAllContent ? t("view_less") : t("view_all_content")}
