@@ -101,7 +101,7 @@ const TestimonialSlider = ({ courseSlug }) => {
                 <div key={testimonial.id || index} className="px-3">
                   <div className="relative top-4 left-0 z-10">
                     <div
-                      class="absolute -top-4 left-5 flex h-[38px] w-[38px] flex-row items-center justify-center rounded-full bg-[#FCE0D6] p-2"
+                      class="relative top-2 left-5 flex h-[45px] w-[45px] flex-row items-center justify-center rounded-full bg-[#FCE0D6] p-2"
                       id="quote"
                     >
                       <div>
@@ -134,7 +134,7 @@ const TestimonialSlider = ({ courseSlug }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-full p-6">
+                  <div className="bg-white rounded-2xl  border-1 border-gray-300 overflow-hidden h-full p-6">
                     {/* --- Video or Text Content --- */}
                     {hasVideo ? (
                       <div className="relative h-48 md:h-56 overflow-hidden rounded-lg">
