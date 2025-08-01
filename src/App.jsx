@@ -6,6 +6,7 @@ import CourseExclusiveFeatures from "./components/section/CourseExclusiveFeature
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
 import CourseLearningOutcomes from "./components/section/CourseLearningOutcomes";
+import FAQ from "./components/section/FAQ";
 import MoreCarousel from "./components/section/MoreCarousel";
 import PaymentInfo from "./components/section/PaymentInfo";
 import PDFDownloadSection from "./components/section/PDFDownloadSection";
@@ -35,6 +36,7 @@ function App() {
         <TestimonialSlider courseSlug="ielts-course" />
         <WhatYouNeedForAttendClass />
         <PaymentInfo />
+        <FAQ courseSlug="ielts-course" />
         <ContactSection />
       </div>
       <div className="px-10 md:px-12 lg:px-32 space-y-8 mt-16">
