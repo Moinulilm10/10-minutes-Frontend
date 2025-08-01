@@ -24,13 +24,13 @@ const CourseExclusiveFeatures = ({ courseSlug }) => {
         </h1>
 
         {/* Main container */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 lg:p-10 shadow-sm">
+        <div className="bg-white rounded-2xl border border-gray-200 px-6 py-6 md:px-8 md:py-5 lg:px-10 lg:py-5 shadow-sm">
           {exclusiveFeatures.map((feature, index) => (
             <div key={feature.id}>
-              <div className="mb-8 md:mb-12 lg:mb-16">
+              <div className="mb-8 md:mb-6 lg:mb-10">
                 <div className="flex flex-col lg:flex-row gap-2 lg:gap-12 justify-between items-center">
                   {/* Left side - Content */}
-                  <div className="flex-1">
+                  <div className="">
                     <h2 className="text-xl md:text-lg lg:text-xl font-bold text-gray-900 mb-6 md:mb-8">
                       {feature.title}
                     </h2>
@@ -58,7 +58,7 @@ const CourseExclusiveFeatures = ({ courseSlug }) => {
                   </div>
 
                   {/* Right side - Feature Image */}
-                  <div className="flex-shrink-1 w-full lg:w-80 xl:w-96">
+                  <div className="w-full lg:w-60 xl:w-70">
                     <img
                       src={feature.file_url}
                       alt={feature.file_url}
