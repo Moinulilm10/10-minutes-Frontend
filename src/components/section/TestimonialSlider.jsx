@@ -60,8 +60,8 @@ const TestimonialSlider = ({ courseSlug }) => {
   return (
     <div className="w-[450px] md:w-[850px] lg:w-[900px]">
       {/* Header */}
-      <div className="text-left mb-6">
-        <h2 className="text-2xl md:text-2xl font-bold text-black mb-12">
+      <div className="text-left">
+        <h2 className="text-2xl md:text-2xl font-bold text-black mb-3">
           {t("students_feedback")}
         </h2>
       </div>
