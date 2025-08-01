@@ -166,8 +166,8 @@ const CourseCarousel = () => {
         {/* Course Cards - React Slick Slider */}
         <Slider ref={sliderRef} {...settings}>
           {courses.map((course) => (
-            <div key={course.id} className=" px-2">
-              <div className="border border-[#E5E7EB]  my-0 flex h-full min-w-[200px] max-w-[200px]  cursor-pointer flex-col overflow-hidden rounded transition-colors hover:border-green-500 md:min-w-[272px] md:rounded-[6px]">
+            <div key={course.id} className="">
+              <div className="border border-[#E5E7EB]  my-0 flex h-full max-w-[320px] cursor-pointer flex-col overflow-hidden rounded transition-colors hover:border-green-500 md:min-w-[272px] md:rounded-[6px]">
                 {/* Course Image */}
                 <div className="relative   overflow-hidden">
                   <img
