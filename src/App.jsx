@@ -32,9 +32,9 @@ function App() {
         <CourseDetails courseSlug="ielts-course" />
         <CourseExclusiveFeatures courseSlug="ielts-course" />
         <WhatWeGotFromCourse />
+        <TestimonialSlider courseSlug="ielts-course" />
         <WhatYouNeedForAttendClass />
         <PaymentInfo />
-        <TestimonialSlider courseSlug="ielts-course" />
         <ContactSection />
       </div>
       <div className="px-10 md:px-12 lg:px-32 space-y-8 mt-16">

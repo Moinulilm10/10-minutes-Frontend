@@ -21,7 +21,7 @@ const PaymentInfo = () => {
 
   return (
     <>
-      <div className="w-[450px] md:w-[850px] lg:w-[900px] py-6 md:py-8 lg:py-10 px-4">
+      <div className="w-[450px] md:w-[850px] lg:w-[900px] ">
         {/* Header Text */}
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black mb-3 md:mb-6 text-left">
           যেভাবে পেমেন্ট করবেন

@@ -8,7 +8,7 @@ const WhatWeGotFromCourse = () => {
   return (
     <div className="w-[450px] md:w-[850px] lg:w-[900px] ">
       {/* Header Text */}
-      <h2 className="text-lg md:text-xl lg:text-2xl font-medium text-gray-800 mb-8 text-center md:text-left">
+      <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-800 mb-8 text-center md:text-left">
         {t("what_we_get.header")}
       </h2>
 

@@ -58,7 +58,7 @@ const TestimonialSlider = ({ courseSlug }) => {
   const { t } = useLanguage();
 
   return (
-    <div className="w-[450px] md:w-[850px] lg:w-[900px]">
+    <div className="w-[450px] md:w-[850px] lg:w-[900px] mt-28">
       {/* Header */}
       <div className="text-left">
         <h2 className="text-2xl md:text-2xl font-bold text-black mb-3">
