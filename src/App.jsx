@@ -1,5 +1,7 @@
 import "./App.css";
 import ContactSection from "./components/section/ContactSection";
+import ContentPreview from "./components/section/ContentPreview";
+import CourseDetails from "./components/section/CourseDetails";
 import CourseExclusiveFeatures from "./components/section/CourseExclusiveFeatures";
 import CourseFeatures from "./components/section/CourseFeatures";
 import CourseInstructorProfile from "./components/section/CourseInstructorProfile";
@@ -26,6 +28,8 @@ function App() {
         <CourseFeatures courseSlug="ielts-course" />
         <PDFDownloadSection courseSlug="ielts-course" />
         <CourseLearningOutcomes courseSlug="ielts-course" />
+        <ContentPreview courseSlug="ielts-course" />
+        <CourseDetails courseSlug="ielts-course" />
         <CourseExclusiveFeatures courseSlug="ielts-course" />
         <WhatWeGotFromCourse />
         <WhatYouNeedForAttendClass />
